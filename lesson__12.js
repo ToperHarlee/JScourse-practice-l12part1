@@ -37,14 +37,20 @@ const lastSeeMovie = prompt('Один из последних просмотре
       ratingFilm = prompt('НА сколько оцените его', ''),
       lastSeeMovie2 = prompt('Один из последних просмотренных фильмов?', ''),
       ratingFilm2 = prompt('НА сколько оцените его', '');
+      // bestActor = prompt('Какой ваш любимый актер?', ''),// это ключ
+      // howActorOld = +prompt('Сколько лет актеру?', ''); // значение
+
 // ключ - значение
 //добавление значений в обьект в виде ключ - значение
 personaMovieDB.movies[lastSeeMovie] = ratingFilm;
 personaMovieDB.movies[lastSeeMovie2] = ratingFilm2;
+//personaMovieDB.actors[bestActor] = howActorOld;
+
 
 // personaMovieDB.movies.lastSeeMovie = ratingFilm;
 // personaMovieDB.movies.lastSeeMovie2 = ratingFilm2;
 console.log(personaMovieDB);
 console.log(personaMovieDB.movies);
+//console.log(personaMovieDB.actors);
 
 
