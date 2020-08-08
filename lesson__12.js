@@ -1,5 +1,5 @@
 'use strict';
-// Задание на урок
+// Задание на урок 12
 
 // 1) Создать переменную numberOfFilms и в нее поместить ответ пользовател на впорос
 // "сколько фильмов вы уже посмотрели?"
@@ -22,7 +22,42 @@
 // }
 // проверить  на ошибки в консоли
 
-const numberOfFilms = +prompt('сколько фильмов вы уже посмотрели?', ''); // плюс перед prompt для того чтобы возвращалось число
+/*const numberOfFilms = +prompt('сколько фильмов вы уже посмотрели?', ''); // плюс перед prompt для того чтобы возвращалось число
+
+const personaMovieDB = {
+    count: numberOfFilms,
+    movies: {},
+    actors: {},
+    genres: [],
+    private: false
+};*/
+
+
+/*const lastSeeMovie = prompt('Один из последних просмотренных фильмов?', ''),
+      ratingFilm = prompt('НА сколько оцените его', ''),
+      lastSeeMovie2 = prompt('Один из последних просмотренных фильмов?', ''),
+      ratingFilm2 = prompt('НА сколько оцените его', '');
+      // bestActor = prompt('Какой ваш любимый актер?', ''),// это ключ
+      // howActorOld = +prompt('Сколько лет актеру?', ''); // значение*/
+
+
+// ключ - значение
+//добавление значений в обьект в виде ключ - значение
+// personaMovieDB.movies[lastSeeMovie] = ratingFilm;
+// personaMovieDB.movies[lastSeeMovie2] = ratingFilm2;
+//personaMovieDB.actors[bestActor] = howActorOld;
+
+
+// personaMovieDB.movies.lastSeeMovie = ratingFilm;
+// personaMovieDB.movies.lastSeeMovie2 = ratingFilm2;
+// console.log(personaMovieDB);
+// console.log(personaMovieDB.movies);
+//console.log(personaMovieDB.actors);
+
+
+// *************************************************   Lesson 15 - practice ********************************************************
+
+const numberOfFilms = +prompt('сколько фильмов вы уже посмотрели?', '2'); // плюс перед prompt для того чтобы возвращалось число
 
 const personaMovieDB = {
     count: numberOfFilms,
@@ -33,24 +68,87 @@ const personaMovieDB = {
 };
 
 
-const lastSeeMovie = prompt('Один из последних просмотренных фильмов?', ''),
-      ratingFilm = prompt('НА сколько оцените его', ''),
-      lastSeeMovie2 = prompt('Один из последних просмотренных фильмов?', ''),
-      ratingFilm2 = prompt('НА сколько оцените его', '');
-      // bestActor = prompt('Какой ваш любимый актер?', ''),// это ключ
-      // howActorOld = +prompt('Сколько лет актеру?', ''); // значение
+// 1.автоматизировать вопросы пользователю при помощи цикла
+for (let i = 0; i <= 3; i++) {
+    const lastSeeMovie = prompt('Один из последних просмотренных фильмов?', ''),
+           ratingFilm = prompt('НА сколько оцените его', '2');
+// 2. сделать проверку на правильность ввода данными пользователем
+    if ( lastSeeMovie == null || ratingFilm == null || lastSeeMovie === '' || ratingFilm === '' || lastSeeMovie > 10){
+        alert('введите данные правильно');
+        i = i - 1;
+    } else {
+        personaMovieDB.movies[lastSeeMovie] = ratingFilm;
+    }
+}
 
-// ключ - значение
-//добавление значений в обьект в виде ключ - значение
-personaMovieDB.movies[lastSeeMovie] = ratingFilm;
-personaMovieDB.movies[lastSeeMovie2] = ratingFilm2;
-//personaMovieDB.actors[bestActor] = howActorOld;
+// 3. при помощи условий проверить сколько зритель смотрел фильмов
+/*let num = personaMovieDB.count;
+switch (num) {
+    case 1:case 2:case 3:case 4:case 5:case 6:case 7:case 8:case 9:
+        alert('просмотрено мало фильмов');
+        break;
+    case 10: case 11:case 12:case 13:case 14:case 15:case 16:case 17:case 18:case 19:case 20:
+    case 21:case 22:case 23:case 24:case 25:case 26:case 27:case 28:case 29:case 30:
+        alert('Вы классический зритель');
+        break;
+    case 31 :
+        alert('да вы киноман');
+        break;
+    default:
+        alert('да вы киноман');
+        break;
+}*/
+// жаль что нельзя в case передавать переменные
+
+if ( personaMovieDB.count < 10){
+    alert('просмотрено мало фильмов');
+} else if (personaMovieDB.count >= 10 || personaMovieDB.count < 30){
+    alert('Вы классический зритель');
+} else if (personaMovieDB.count > 30) {
+    alert('да вы киноман');
+}else {
+    alert('error 404');
+}
+
+//4. переписать двумя способами цикл
+//while
+/*let i = 1;
+while ( i <= 3 ) {
+    const lastSeeMovie = prompt('Один из последних просмотренных фильмов?', ''),
+        ratingFilm = prompt('НА сколько оцените его', '2');
+// 2. сделать проверку на правильность ввода данными пользователем
+    switch (lastSeeMovie) {
+        case lastSeeMovie == null : case ratingFilm == null : case lastSeeMovie === '' : case ratingFilm === '' : case lastSeeMovie > 10:
+            alert('введите данные правильно');
+            i = i - 1;
+            break;
+        default:
+            personaMovieDB.movies[lastSeeMovie] = ratingFilm;
+            break;
+    }
+    i++;
+}*/
+//do..while
+/*
+let i = 1;
+do {
+    const lastSeeMovie = prompt('Один из последних просмотренных фильмов?', ''),
+        ratingFilm = prompt('НА сколько оцените его', '2');
+// 2. сделать проверку на правильность ввода данными пользователем
+    switch (lastSeeMovie) {
+        case lastSeeMovie == null : case ratingFilm == null : case lastSeeMovie === '' : case ratingFilm === '' : case lastSeeMovie > 10:
+            alert('введите данные правильно');
+            i = i - 1;
+            break;
+        default:
+            personaMovieDB.movies[lastSeeMovie] = ratingFilm;
+            break;
+    }
+    i++;
+}while ( i <= 3 );
+*/
 
 
-// personaMovieDB.movies.lastSeeMovie = ratingFilm;
-// personaMovieDB.movies.lastSeeMovie2 = ratingFilm2;
 console.log(personaMovieDB);
 console.log(personaMovieDB.movies);
-//console.log(personaMovieDB.actors);
-
 
