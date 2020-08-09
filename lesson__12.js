@@ -57,7 +57,7 @@ const personaMovieDB = {
 
 // *************************************************   Lesson 15 - practice ********************************************************
 
-const numberOfFilms = +prompt('сколько фильмов вы уже посмотрели?', '2'); // плюс перед prompt для того чтобы возвращалось число
+/*const numberOfFilms = +prompt('сколько фильмов вы уже посмотрели?', '2'); // плюс перед prompt для того чтобы возвращалось число
 
 const personaMovieDB = {
     count: numberOfFilms,
@@ -79,7 +79,7 @@ for (let i = 0; i <= 3; i++) {
     } else {
         personaMovieDB.movies[lastSeeMovie] = ratingFilm;
     }
-}
+}*/
 
 // 3. при помощи условий проверить сколько зритель смотрел фильмов
 /*let num = personaMovieDB.count;
@@ -100,7 +100,7 @@ switch (num) {
 }*/
 // жаль что нельзя в case передавать переменные
 
-if ( personaMovieDB.count < 10){
+/*if ( personaMovieDB.count < 10){
     alert('просмотрено мало фильмов');
 } else if (personaMovieDB.count >= 10 || personaMovieDB.count < 30){
     alert('Вы классический зритель');
@@ -108,7 +108,7 @@ if ( personaMovieDB.count < 10){
     alert('да вы киноман');
 }else {
     alert('error 404');
-}
+}*/
 
 //4. переписать двумя способами цикл
 //while
@@ -149,6 +149,96 @@ do {
 */
 
 
-console.log(personaMovieDB);
-console.log(personaMovieDB.movies);
+/*console.log(personaMovieDB);
+console.log(personaMovieDB.movies);*/
+
+
+
+// *********************************************************** lesson 018 Практика , ч3. Используем функции **********************************************************
+
+// Задание на урок:
+//1. первую часть задания повторить по уроку
+//2. Создать функцию showMyDB, которая будет проверять свойтсво private , если оно false
+// -- выводить в консоль главный обьект программы
+//3. Создать функцию writeYourGenres в которой пользователь 3 раза будет отвечать
+// на вопрос "Ваш любимый жанр под номером ${номер по порядку}", каждый ответ записывается в массив данных
+// genres
+
+
+//1.
+let numberOfFilms;
+
+function start() {
+    numberOfFilms = +prompt('сколько фильмов вы уже посмотрели?', '');
+    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+        numberOfFilms = +prompt('Так сколько же фильмов вы все же посмотрели?', '');
+    }
+}
+
+start();
+
+const personaMovieDB = {
+    count: numberOfFilms,
+    movies: {},
+    actors: {},
+    genres: [],
+    private: false
+};
+
+
+function rememberMyFilms() {
+    for (let i = 0; i <= 3; i++) {
+        const lastSeeMovie = prompt('Один из последних просмотренных фильмов?', ''),
+            ratingFilm = prompt('НА сколько оцените его', '2');
+        if ( lastSeeMovie == null || ratingFilm == null || lastSeeMovie === '' || ratingFilm === '' || lastSeeMovie > 10 || typeof(lastSeeMovie) !== 'string'){
+            alert('введите данные правильно');
+            i = i - 1;
+        } else if (isNaN(ratingFilm)){
+            alert('рейтинг нужно вводить числом!');
+            i = i - 1;
+        } else {
+            personaMovieDB.movies[lastSeeMovie] = ratingFilm;
+        }
+    }
+}
+
+rememberMyFilms();
+
+
+function detectPersonalLvl () {
+    if ( personaMovieDB.count < 10){
+        alert('просмотрено мало фильмов');
+    } else if (personaMovieDB.count >= 10 || personaMovieDB.count < 30){
+        alert('Вы классический зритель');
+    } else if (personaMovieDB.count > 30) {
+        alert('да вы киноман');
+    }else {
+        alert('error 404');
+    }
+}
+
+detectPersonalLvl();
+
+
+//3.
+
+function writeYourGenres() {
+   for (let i = 1; i < 4; i++){
+      let filmsTypes = prompt(`Ваш любимый жанр под номером ${i}`);
+       personaMovieDB.genres[`${i}`] = filmsTypes;
+   }
+}
+
+writeYourGenres();
+
+
+//2.
+function showMyDB (privates) {
+    if (privates === false) {
+        console.log(personaMovieDB);
+    }
+}
+showMyDB(personaMovieDB.private);
+
+
 
